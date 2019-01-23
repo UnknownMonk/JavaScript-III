@@ -33,7 +33,6 @@ GameObject.prototype.destroy = function() {
 */
 
 function CharacterStats(info) {
-  this.healthPoints = info.healthPoints;
   this.name = info.name;
   this.healthPoints = info.healthPoints;
   GameObject.call(this, info);
@@ -137,7 +136,7 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 function Villain(powers) {
   this.foulStench = powers.foulStench;
-  this.health = powers.helth;
+  CharacterStats.call(this, powers);
   Humanoid.call(this, powers);
 }
 
@@ -150,7 +149,7 @@ Villain.prototype.dirtyHand = function() {
 
 function Hero(powers) {
   this.irratingCatchPhrases = powers.irratingCatchPhrases;
-  this.health = powers.health;
+  CharacterStats.call(this, powers);
   Humanoid.call(this, powers);
 }
 
@@ -158,3 +157,21 @@ Hero.prototype.soapOnARope = function() {
   this.health -= 30;
   return `The hero ${this.name} says her is a little soap on a rope you dope`;
 };
+
+const mrClean = new Hero({
+  irratingCatchPhrases: `Clean up your act evil evildoer `,
+  healthPoints: 100,
+  name: 'Mr Clean',
+  weapons: ['Sponge', 'Mop'],
+  language: 'English',
+  team: 'Strugle Buss'
+});
+
+const dirtyHairy = new Villain({
+  foulStench: `Smelly pits`,
+  healthPoints: 100,
+  name: 'Mr Clean',
+  weapons: ['Dirty Socks', 'Gym bag'],
+  language: 'Slack jaw local',
+  team: 'doldrums'
+});
