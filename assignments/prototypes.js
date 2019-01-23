@@ -65,7 +65,9 @@ function Humanoid(attributes) {
 Humanoid.prototype = Object.create(CharacterStats.prototype);
 
 Humanoid.prototype.greet = function() {
-  return `${this.name} offers a greeting in ${this.language}`;
+  return `${this.name} offers a greeting in ${
+    this.language
+  } ${(this.healthPoints -= 30)} `;
 };
 
 /*
@@ -141,7 +143,7 @@ function Villain(powers) {
 }
 
 Villain.prototype.dirtyHand = function() {
-  this.health -= 30;
+  mrClean.healthPoints -= 30;
   return `The villian ${
     this.name
   } puts hero in head lock and makes him smell his dirty hand`;
@@ -154,8 +156,8 @@ function Hero(powers) {
 }
 
 Hero.prototype.soapOnARope = function() {
-  this.health -= 30;
-  return `The hero ${this.name} says her is a little soap on a rope you dope`;
+  dirtyHairy.healthPoints -= 30;
+  return `The hero ${this.name} says here is a little soap on a rope you dope `;
 };
 
 const mrClean = new Hero({
@@ -175,3 +177,11 @@ const dirtyHairy = new Villain({
   language: 'Slack jaw local',
   team: 'doldrums'
 });
+
+console.log(dirtyHairy.foulStench);
+console.log(mrClean.soapOnARope());
+
+console.log(dirtyHairy.dirtyHand());
+console.log(dirtyHairy.healthPoints);
+console.log(mrClean.healthPoints);
+console.log();
